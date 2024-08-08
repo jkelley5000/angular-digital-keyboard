@@ -2,9 +2,54 @@
     <!-- {{ keyObject.levels }}
     {{ keyObject.row }}
     {{ keyObject.type }} -->
-    <span>{{ keyObject.value[0] }}</span>
-    @if (keyObject.value[1]) {
-        <span>{{ keyObject.value[1] }}</span>
-    }
+    <div class="key-row">
+        <div class="key" 
+            *ngFor="let key of keysRowOne" 
+            [ngClass]="{'key__type-two': key.type === 2}">
+            <span>{{ key.value[0] }}</span>
+            @if (key.value[1]) {
+                <span>{{ key.value[1] }}</span>
+            }
+        </div>
+    </div>
+    <div class="key-row">
+        <div class="key" 
+            *ngFor="let key of keysRowTwo" 
+            [ngClass]="{'key__type-one': key.type === 1}">
+            <span>{{ key.value[0] }}</span>
+            @if (key.value[1]) {
+                <span>{{ key.value[1] }}</span>
+            }
+        </div>
+    </div>
+    <div class="key-row">
+        <div class="key" 
+            *ngFor="let key of keysRowThree" 
+            [ngClass]="{'key__type-one': key.type === 1, 'key__type-two': key.type === 2}">
+            <span>{{ key.value[0] }}</span>
+            @if (key.value[1]) {
+                <span>{{ key.value[1] }}</span>
+            }
+        </div>
+    </div>
+    <div class="key-row">
+        <div class="key" 
+            *ngFor="let key of keysRowFour" 
+            [ngClass]="{'key__type-three': key.type === 3}">
+            <span>{{ key.value[0] }}</span>
+            @if (key.value[1]) {
+                <span>{{ key.value[1] }}</span>
+            }
+        </div>
+    </div>
+    <div class="key-row">
+        <div class="key" 
+            *ngFor="let key of keysRowFive" 
+            [ngClass]="{'key__type-one': key.type === 1, 'key__type-four': key.type === 4, 'key__type-five': key.type === 5}">
+            <span>{{ key.value[0] }}</span>
+            @if (key.value[1]) {
+                <span>{{ key.value[1] }}</span>
+            }
+        </div>
+    </div>
 </div>
-<!-- <div class="key-common-background"></div> -->
