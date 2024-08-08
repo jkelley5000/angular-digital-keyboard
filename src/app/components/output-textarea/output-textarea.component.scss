@@ -1,0 +1,11 @@
+@import '../../theme/colors.scss';
+
+.output-textarea {
+    margin-top: 40px;
+    margin-bottom: 55px;
+    width: 966px;
+    height: 200px;
+    background-color: $light-purple;
+    border-radius: 5px;
+    box-shadow: 0 0 6px $medium-purple;
+}
