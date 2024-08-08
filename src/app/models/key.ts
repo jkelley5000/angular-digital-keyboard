@@ -1,6 +1,6 @@
 export interface Key {
     "row": number;
     "levels": number;
-    "value": Array<unknown>;
+    "value": Array<string>;
     "type": number;
 }
