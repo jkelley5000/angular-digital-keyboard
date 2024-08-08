@@ -1,1 +1,18 @@
-.key-common {}
+@import '../../theme/colors.scss';
+
+.key-common {
+    margin: 10px;
+    padding-top: 2px;
+    padding-left: 6px;
+    width: 55px;
+    height: 55px;
+    border: solid .5px #FFF;
+    border-radius: 5px;
+    background-color: $light-grey;
+    color: #FFF;
+    box-shadow: 0 0 6px $medium-purple;
+    font-family: 'Roboto';
+    font-size: 19px;
+    display: flex;
+    flex-direction: column;
+}

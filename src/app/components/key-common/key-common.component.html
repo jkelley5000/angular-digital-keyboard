@@ -1,1 +1,10 @@
-<div class="key-common"></div>
+<div class="key-common">
+    <!-- {{ keyObject.levels }}
+    {{ keyObject.row }}
+    {{ keyObject.type }} -->
+    <span>{{ keyObject.value[0] }}</span>
+    @if (keyObject.value[1]) {
+        <span>{{ keyObject.value[1] }}</span>
+    }
+</div>
+<!-- <div class="key-common-background"></div> -->

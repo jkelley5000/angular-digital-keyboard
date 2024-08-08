@@ -1,1 +1,7 @@
-.main {}
+@import './theme/colors.scss';
+
+.main {
+    padding: 10px;
+    height: 100vh;
+    background-color: $dark-grey;
+}
