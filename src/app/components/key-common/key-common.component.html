@@ -46,9 +46,14 @@
         <div class="key" 
             *ngFor="let key of keysRowFive" 
             [ngClass]="{'key__type-one': key.type === 1, 'key__type-four': key.type === 4, 'key__type-five': key.type === 5}">
-            <span>{{ key.value[0] }}</span>
-            @if (key.value[1]) {
-                <span>{{ key.value[1] }}</span>
+            @if (key.type === 5) {
+                <app-key-special [keyObject]="key"></app-key-special>
+            }
+            @else {
+                <span>{{ key.value[0] }}</span>
+                @if (key.value[1]) {
+                    <span>{{ key.value[1] }}</span>
+                }
             }
         </div>
     </div>

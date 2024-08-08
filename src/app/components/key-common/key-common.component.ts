@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Key } from '../../models/key';
+import { KeySpecialComponent } from '../key-special/key-special.component';
 
 @Component({
     selector: 'app-key-common',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, KeySpecialComponent],
     templateUrl: './key-common.component.html',
     styleUrl: './key-common.component.scss'
 })
