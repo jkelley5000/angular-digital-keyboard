@@ -8,4 +8,8 @@
     background-color: $light-purple;
     border-radius: 5px;
     box-shadow: 0 0 6px $medium-purple;
+
+    &-content {
+        font-family: 'Roboto';
+    }
 }

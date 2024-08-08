@@ -1,11 +1,9 @@
 <div class="key-common">
-    <!-- {{ keyObject.levels }}
-    {{ keyObject.row }}
-    {{ keyObject.type }} -->
     <div class="key-row">
         <div class="key" 
             *ngFor="let key of keysRowOne" 
-            [ngClass]="{'key__type-two': key.type === 2}">
+            [ngClass]="{'key__type-two': key.type === 2}"
+            (click)="onKeyClick(key)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {
                 <span>{{ key.value[1] }}</span>
@@ -15,7 +13,8 @@
     <div class="key-row">
         <div class="key" 
             *ngFor="let key of keysRowTwo" 
-            [ngClass]="{'key__type-one': key.type === 1}">
+            [ngClass]="{'key__type-one': key.type === 1}"
+            (click)="onKeyClick(key)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {
                 <span>{{ key.value[1] }}</span>
@@ -25,7 +24,8 @@
     <div class="key-row">
         <div class="key" 
             *ngFor="let key of keysRowThree" 
-            [ngClass]="{'key__type-one': key.type === 1, 'key__type-two': key.type === 2}">
+            [ngClass]="{'key__type-one': key.type === 1, 'key__type-two': key.type === 2}"
+            (click)="onKeyClick(key)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {
                 <span>{{ key.value[1] }}</span>
@@ -35,7 +35,8 @@
     <div class="key-row">
         <div class="key" 
             *ngFor="let key of keysRowFour" 
-            [ngClass]="{'key__type-three': key.type === 3}">
+            [ngClass]="{'key__type-three': key.type === 3}"
+            (click)="onKeyClick(key)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {
                 <span>{{ key.value[1] }}</span>
@@ -45,7 +46,8 @@
     <div class="key-row">
         <div class="key" 
             *ngFor="let key of keysRowFive" 
-            [ngClass]="{'key__type-one': key.type === 1, 'key__type-four': key.type === 4, 'key__type-five': key.type === 5}">
+            [ngClass]="{'key__type-one': key.type === 1, 'key__type-four': key.type === 4, 'key__type-five': key.type === 5}"
+            (click)="onKeyClick(key)">
             @if (key.type === 5) {
                 <app-key-special [keyObject]="key"></app-key-special>
             }

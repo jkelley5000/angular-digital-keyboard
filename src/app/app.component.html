@@ -1,6 +1,6 @@
 <main class="main">
-    <app-output-textarea />
-    <app-key-common [keys]="allKeys" />
+    <app-output-textarea [contentObject]="contentObject" />
+    <app-key-common [keys]="allKeys" (keyClickEvent)="processKeyEvent($event)" />
     <router-outlet />
 </main>
 

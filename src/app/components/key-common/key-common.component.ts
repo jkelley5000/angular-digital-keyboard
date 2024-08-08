@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Key } from '../../models/key';
 import { KeySpecialComponent } from '../key-special/key-special.component';
@@ -12,6 +12,8 @@ import { KeySpecialComponent } from '../key-special/key-special.component';
 })
 export class KeyCommonComponent {
     @Input() keys: Array<Key> = [];
+
+    @Output() keyClickEvent = new EventEmitter();
 
     keysRowOne: Array<Key> = [];
     keysRowTwo: Array<Key> = [];
@@ -37,5 +39,9 @@ export class KeyCommonComponent {
                 this.keysRowFive.push(key);
             }
         });
+    }
+
+    onKeyClick(key: Key) {
+        this.keyClickEvent.emit(key);
     }
 }
