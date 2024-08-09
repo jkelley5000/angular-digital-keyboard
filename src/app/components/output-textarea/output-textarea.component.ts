@@ -14,6 +14,8 @@ export class OutputTextareaComponent {
     content = signal('');
 
     constructor() {
+
+        // Installed to respond to changes to the content object from the parent component.
         effect(() => {
             this.content = this.contentObject;
         })

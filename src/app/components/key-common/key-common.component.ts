@@ -43,6 +43,17 @@ export class KeyCommonComponent {
         });
     }
 
+    /**
+     * @memberof KeyCommonComponent
+     * @param key {
+     *   "row": number;
+     *   "levels": number;
+     *   "value": Array<string>;
+     *   "type": number;
+     * }
+     * @description Bound to the click event on any key. Applies initial UI logic if certain keys are clicked (Shift, Caps Lock), then emits the
+     * click event while passing the whole key object to the parent component.
+     */
     onKeyClick(key: Key) {
         const keyValue = key.value[0];
         if (keyValue.length > 1) {

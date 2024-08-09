@@ -25,6 +25,18 @@ export class AppComponent {
         this.allKeys = AllKeys;
     }
 
+    /**
+     * @memberof AppComponent
+     * @param key {
+     *   "row": number;
+     *   "levels": number;
+     *   "value": Array<string>;
+     *   "type": number;
+     * }
+     * @description When a key click event is emitted from the child key-common component, this function processes the key object passed from
+     * that function. Determines if certain UI logic needs to be applied. Adds edited text to the content object passed to the child output-textarea
+     * component for rendering within.
+     */
     processKeyEvent(key: Key) {
         let newContent = key.value[0];
         let keyType = key.type;
