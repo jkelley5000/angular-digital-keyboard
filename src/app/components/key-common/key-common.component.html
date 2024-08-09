@@ -24,7 +24,7 @@
     <div class="key-row">
         <div class="key" 
             *ngFor="let key of keysRowThree" 
-            [ngClass]="{'key__type-one': key.type === 1, 'key__type-two': key.type === 2}"
+            [ngClass]="{'key__type-one': key.type === 1, 'key__type-two': key.type === 2, 'key__active': (capsLockKeyActive && key.value[0] === 'Caps Lock')}"
             (click)="onKeyClick(key)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {
@@ -35,7 +35,7 @@
     <div class="key-row">
         <div class="key" 
             *ngFor="let key of keysRowFour" 
-            [ngClass]="{'key__type-three': key.type === 3}"
+            [ngClass]="{'key__type-three': key.type === 3, 'key__active': (shiftKeyActive && key.value[0] === 'Shift')}"
             (click)="onKeyClick(key)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {

@@ -43,6 +43,10 @@
             &__type-four {
                 width: 380px;
             }
+
+            &__active {
+                background-color: $medium-purple;
+            }
         }
     }
 }

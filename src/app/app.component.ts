@@ -17,14 +17,68 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
     allKeys: Array<Key> = [];
-    contentObject = signal('toast');
+    contentObject = signal('');
+    shiftKeyActive: boolean = false;
+    capsLockKeyActive: boolean = false;
 
     constructor() {
         this.allKeys = AllKeys;
     }
 
     processKeyEvent(key: Key) {
-        const newContent = key?.value[0];
-        this.contentObject.set(this.contentObject() + newContent);
+        let newContent = key.value[0];
+        let keyType = key.type;
+        let existingContent = this.contentObject();
+
+        if (newContent.length > 1) {
+            if (newContent === 'Shift') {
+                this.shiftKeyActive = !this.shiftKeyActive;
+                this.capsLockKeyActive = false;
+            }
+            if (newContent === 'Caps Lock') {
+                this.capsLockKeyActive = !this.capsLockKeyActive;
+                this.shiftKeyActive = false;
+            }
+            if (newContent === 'Backspace') {
+                existingContent = existingContent.slice(0, (existingContent.length - 1));
+                newContent = '';
+            }
+            if (newContent === 'Enter' || newContent === 'Ctrl' || newContent === 'Alt' || newContent === 'Tab' || newContent === 'Shift' || newContent === 'Caps Lock') {
+                newContent = '';
+            }
+        } else {
+            newContent = newContent.toLowerCase();
+        }
+
+        // check if shift key active
+        if (key.levels === 1 && key.value[0] !== 'Backspace' && key.value[0] !== 'Enter' && key.value[0] !== 'Shift' && key.value[0] !== 'Ctrl' && key.value[0] !== 'Alt' && key.value[0] !== 'Caps Lock' && key.value[0] !== 'Tab') {
+            console.log('key has 1 level');
+            if (this.shiftKeyActive === true) {
+                newContent = newContent.toUpperCase();
+                this.shiftKeyActive = false;
+            } else {
+                newContent = newContent.toLowerCase();
+            }
+        }
+        if (key.levels === 2) {
+            if (this.shiftKeyActive === true) {
+                newContent = key.value[0];
+                this.shiftKeyActive = false;
+            } else {
+                newContent = key.value[1];
+            }
+        }
+
+        // check if caps lock key active
+        if (key.levels === 1 && this.capsLockKeyActive) {
+            newContent = newContent.toUpperCase();
+        }
+
+        // space bar click
+        if (keyType === 4) {
+            newContent = ' ';
+        }
+
+        this.contentObject.set(existingContent + newContent);
     }
 }

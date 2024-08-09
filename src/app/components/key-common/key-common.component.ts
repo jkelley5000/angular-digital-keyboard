@@ -20,6 +20,8 @@ export class KeyCommonComponent {
     keysRowThree: Array<Key> = [];
     keysRowFour: Array<Key> = [];
     keysRowFive: Array<Key> = [];
+    shiftKeyActive: boolean = false;
+    capsLockKeyActive: boolean = false;
 
     ngOnInit(): void {
         this.keys.map(key => {
@@ -42,6 +44,19 @@ export class KeyCommonComponent {
     }
 
     onKeyClick(key: Key) {
+        const keyValue = key.value[0];
+        if (keyValue.length > 1) {
+            if (keyValue === 'Shift') {
+                this.shiftKeyActive = !this.shiftKeyActive;
+                this.capsLockKeyActive = false;
+            }
+            if (keyValue === 'Caps Lock') {
+                this.capsLockKeyActive = !this.capsLockKeyActive;
+                this.shiftKeyActive = false;
+            }
+        } else {
+            this.shiftKeyActive = false;
+        }
         this.keyClickEvent.emit(key);
     }
 }
