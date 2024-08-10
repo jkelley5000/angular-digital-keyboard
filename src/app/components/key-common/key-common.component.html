@@ -1,9 +1,9 @@
 <div class="key-common">
     <div class="key-row">
         <div class="key" 
-            *ngFor="let key of keysRowOne" 
-            [ngClass]="{'key__type-two': key.type === 2}"
-            (click)="onKeyClick(key)">
+            *ngFor="let key of keysRowOne; let i = index;" 
+            [ngClass]="{'key__type-two': key.type === 2, 'key__animate': animateKeys}"
+            (click)="onKeyClick(key, i)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {
                 <span>{{ key.value[1] }}</span>
@@ -12,9 +12,9 @@
     </div>
     <div class="key-row">
         <div class="key" 
-            *ngFor="let key of keysRowTwo" 
-            [ngClass]="{'key__type-one': key.type === 1}"
-            (click)="onKeyClick(key)">
+            *ngFor="let key of keysRowTwo; let i = index;" 
+            [ngClass]="{'key__type-one': key.type === 1, 'key__animate': animateKeys}"
+            (click)="onKeyClick(key, i)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {
                 <span>{{ key.value[1] }}</span>
@@ -23,9 +23,9 @@
     </div>
     <div class="key-row">
         <div class="key" 
-            *ngFor="let key of keysRowThree" 
-            [ngClass]="{'key__type-one': key.type === 1, 'key__type-two': key.type === 2, 'key__active': (capsLockKeyActive && key.value[0] === 'Caps Lock')}"
-            (click)="onKeyClick(key)">
+            *ngFor="let key of keysRowThree; let i = index;" 
+            [ngClass]="{'key__type-one': key.type === 1, 'key__type-two': key.type === 2, 'key__active': (capsLockKeyActive && key.value[0] === 'Caps Lock'), 'key__animate': animateKeys}"
+            (click)="onKeyClick(key, i)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {
                 <span>{{ key.value[1] }}</span>
@@ -34,9 +34,9 @@
     </div>
     <div class="key-row">
         <div class="key" 
-            *ngFor="let key of keysRowFour" 
-            [ngClass]="{'key__type-three': key.type === 3, 'key__active': (shiftKeyActive && key.value[0] === 'Shift')}"
-            (click)="onKeyClick(key)">
+            *ngFor="let key of keysRowFour; let i = index;" 
+            [ngClass]="{'key__type-three': key.type === 3, 'key__active': (shiftKeyActive && key.value[0] === 'Shift'), 'key__animate': animateKeys}"
+            (click)="onKeyClick(key, i)">
             <span>{{ key.value[0] }}</span>
             @if (key.value[1]) {
                 <span>{{ key.value[1] }}</span>
@@ -45,17 +45,17 @@
     </div>
     <div class="key-row">
         <div class="key" 
-            *ngFor="let key of keysRowFive" 
-            [ngClass]="{'key__type-one': key.type === 1, 'key__type-four': key.type === 4, 'key__type-five': key.type === 5}"
-            (click)="onKeyClick(key)">
-            @if (key.type === 5) {
-                <app-key-special [keyObject]="key"></app-key-special>
-            }
-            @else {
+            *ngFor="let key of keysRowFive; let i = index;" 
+            [ngClass]="{'key__type-one': key.type === 1, 'key__type-four': key.type === 4, 'key__type-five': key.type === 5, 'key__animate': animateKeys}"
+            (click)="onKeyClick(key, i)">
+            @if (key.type !== 5) {
                 <span>{{ key.value[0] }}</span>
                 @if (key.value[1]) {
                     <span>{{ key.value[1] }}</span>
                 }
+            }
+            @if (key.type === 5 && i === 1) {
+                <img src="/assets/icons/music_note.svg" />
             }
         </div>
     </div>

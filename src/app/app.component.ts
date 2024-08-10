@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { KeyCommonComponent } from './components/key-common/key-common.component';
 import { Key } from './models/key';
-import { KeySpecialComponent } from './components/key-special/key-special.component';
 import { AllKeys } from './data/all-keys';
 import { OutputTextareaComponent } from './components/output-textarea/output-textarea.component';
 import { CommonModule } from '@angular/common';
@@ -11,7 +10,7 @@ import { Observable } from 'rxjs';
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, RouterOutlet, KeyCommonComponent, KeySpecialComponent, OutputTextareaComponent],
+    imports: [CommonModule, RouterOutlet, KeyCommonComponent, OutputTextareaComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
@@ -37,7 +36,7 @@ export class AppComponent {
      * that function. Determines if certain UI logic needs to be applied. Adds edited text to the content object passed to the child output-textarea
      * component for rendering within.
      */
-    processKeyEvent(key: Key) {
+    processKeyEvent(key: Key, audioElement: any) {
         let newContent = key.value[0];
         let keyType = key.type;
         let existingContent = this.contentObject();
@@ -64,7 +63,6 @@ export class AppComponent {
 
         // check if shift key active
         if (key.levels === 1 && key.value[0] !== 'Backspace' && key.value[0] !== 'Enter' && key.value[0] !== 'Shift' && key.value[0] !== 'Ctrl' && key.value[0] !== 'Alt' && key.value[0] !== 'Caps Lock' && key.value[0] !== 'Tab') {
-            console.log('key has 1 level');
             if (this.shiftKeyActive === true) {
                 newContent = newContent.toUpperCase();
                 this.shiftKeyActive = false;
@@ -89,6 +87,11 @@ export class AppComponent {
         // space bar click
         if (keyType === 4) {
             newContent = ' ';
+        }
+
+        // special key click
+        if (keyType === 5) {
+            audioElement.play();
         }
 
         this.contentObject.set(existingContent + newContent);

@@ -47,6 +47,28 @@
             &__active {
                 background-color: $medium-purple;
             }
+
+            &__animate {
+                animation: dancingKeys .6s 1s 150;
+            }
+
+            img {
+                width: 25px;
+            }
         }
+    }
+}
+
+@keyframes dancingKeys {
+    0% {
+        margin-top: 0;
+    }
+
+    50% {
+        // margin-top: -3px;
+    }
+
+    100% {
+        margin-top: -3px;
     }
 }

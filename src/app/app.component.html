@@ -1,6 +1,6 @@
 <main class="main">
     <app-output-textarea [contentObject]="contentObject" />
-    <app-key-common [keys]="allKeys" (keyClickEvent)="processKeyEvent($event)" />
-    <router-outlet />
+    <app-key-common [keys]="allKeys" (keyClickEvent)="processKeyEvent($event, happyDance)" />
+    <audio #happyDance src="/assets/music/HAPPY-DANCE-HOUSE-(HEART-ON-FIRE)_AdobeStock_864113404_preview.m4a"></audio>
 </main>
 

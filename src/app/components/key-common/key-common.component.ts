@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Key } from '../../models/key';
-import { KeySpecialComponent } from '../key-special/key-special.component';
 
 @Component({
     selector: 'app-key-common',
     standalone: true,
-    imports: [CommonModule, KeySpecialComponent],
+    imports: [CommonModule],
     templateUrl: './key-common.component.html',
     styleUrl: './key-common.component.scss'
 })
@@ -22,6 +21,7 @@ export class KeyCommonComponent {
     keysRowFive: Array<Key> = [];
     shiftKeyActive: boolean = false;
     capsLockKeyActive: boolean = false;
+    animateKeys: boolean = false;
 
     ngOnInit(): void {
         this.keys.map(key => {
@@ -54,7 +54,7 @@ export class KeyCommonComponent {
      * @description Bound to the click event on any key. Applies initial UI logic if certain keys are clicked (Shift, Caps Lock), then emits the
      * click event while passing the whole key object to the parent component.
      */
-    onKeyClick(key: Key) {
+    onKeyClick(key: Key, index: number) {
         const keyValue = key.value[0];
         if (keyValue.length > 1) {
             if (keyValue === 'Shift') {
@@ -68,6 +68,21 @@ export class KeyCommonComponent {
         } else {
             this.shiftKeyActive = false;
         }
+        this.onAnimateKeys(key.type, index);
         this.keyClickEvent.emit(key);
+    }
+
+    /**
+     * @memberof KeyCommonComponent
+     * @param keyType Possible value of 0-5, type 5 is a special key.
+     * @param index Position in array of keys within a row.
+     * @description When invoked, determines if the music "special key" has been clicked. If true, sets property
+     * utilized to apply a css class that utilizes a pre-defined animation to make the keys appear to be dancing 
+     * to a beat.
+     */
+    onAnimateKeys(keyType: number, index: number) {
+        if (keyType === 5 && index === 1) {
+            this.animateKeys = true;
+        }
     }
 }
